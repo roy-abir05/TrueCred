@@ -100,12 +100,12 @@ contract TrueCred {
         );
         require(bytes(_tokenURI).length > 0, "Token URI is required");
         require(
-            verifyIssueSignature(_student, _institution, _tokenURI, _signature),
-            "Invalid Signature"
-        );
-        require(
             _approvedInstitutions[_institution],
             "Institution not approved"
+        );
+        require(
+            verifyIssueSignature(_student, _institution, _tokenURI, _signature),
+            "Invalid Signature"
         );
 
         ++_nextTokenId;
@@ -150,10 +150,6 @@ contract TrueCred {
             "Invalid token ID"
         );
         require(
-            verifyRevokeSignature(_student, _institution, _tokenId, _signature),
-            "Invalid Signature"
-        );
-        require(
             _approvedInstitutions[_institution],
             "Institution not approved"
         );
@@ -168,6 +164,10 @@ contract TrueCred {
         require(
             _certificates[_tokenId].isRevoked == false,
             "Certificate is already Revoked"
+        );
+        require(
+            verifyRevokeSignature(_student, _institution, _tokenId, _signature),
+            "Invalid Signature"
         );
 
         _certificates[_tokenId].isRevoked = true;
