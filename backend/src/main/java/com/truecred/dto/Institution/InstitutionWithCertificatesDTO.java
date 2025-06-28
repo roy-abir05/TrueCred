@@ -1,6 +1,9 @@
-package com.truecred.dto;
+package com.truecred.dto.Institution;
 
+import java.util.List;
 import java.util.UUID;
+
+import com.truecred.dto.Certificate.CertificateDTO;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,8 +12,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class InstitutionRegistrationDTO {
-    
+public class InstitutionWithCertificatesDTO {
+
     private UUID id;
 
     @NotBlank(message = "Institution name is required")
@@ -19,8 +22,6 @@ public class InstitutionRegistrationDTO {
     @Email(message = "Email must be valid")
     @NotBlank(message = "Email is required")
     private String email;
-
-    private String password;
 
     @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
     private String phoneNumber;
@@ -37,4 +38,6 @@ public class InstitutionRegistrationDTO {
 
     @NotBlank(message = "Wallet address is required")
     private String walletAddress;
+
+    private List<CertificateDTO> issuedCertificates;
 }

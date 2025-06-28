@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.truecred.dto.CertificateDTO;
+import com.truecred.dto.Certificate.CertificateDTO;
 import com.truecred.entity.Certificate;
-import com.truecred.mapper.CertificateMapper;
+import com.truecred.mapper.Certificate.CertificateMapper;
 import com.truecred.service.CertificateService;
 
 import jakarta.validation.Valid;

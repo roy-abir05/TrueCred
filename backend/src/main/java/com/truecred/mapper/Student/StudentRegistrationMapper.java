@@ -1,9 +1,9 @@
-package com.truecred.mapper;
+package com.truecred.mapper.Student;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.truecred.dto.StudentRegistrationDTO;
+import com.truecred.dto.Student.StudentRegistrationDTO;
 import com.truecred.entity.Student;
 
 @Mapper(componentModel = "spring")

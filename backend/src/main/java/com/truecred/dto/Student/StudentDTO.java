@@ -1,4 +1,4 @@
-package com.truecred.dto;
+package com.truecred.dto.Student;
 
 import java.util.UUID;
 

@@ -1,37 +1,30 @@
-package com.truecred.dto;
+package com.truecred.dto.Student;
 
 import java.util.UUID;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class InstitutionDTO {
-    
+public class StudentRegistrationDTO {
+
     private UUID id;
 
-    @NotBlank(message = "Institution name is required")
+    @NotBlank(message = "Name is required")
     private String name;
 
-    @Email(message = "Email must be valid")
+    @Email(message = "Email should be valid")
     @NotBlank(message = "Email is required")
     private String email;
+
+    private String password;
 
     @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
     private String phoneNumber;
 
-    private String websiteUrl;
-
-    private String logoUrl;
-
-    @Size(max = 1000, message = "Address must not exceed 255 characters")
-    private String address;
-
-    @Size(max = 1000, message = "Description must not exceed 1000 characters")
-    private String description;
+    private String profileImageUrl;
 
     @NotBlank(message = "Wallet address is required")
     private String walletAddress;

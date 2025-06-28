@@ -1,10 +1,11 @@
-package com.truecred.mapper;
+package com.truecred.mapper.Student;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.truecred.dto.StudentWithCertificatesDTO;
+import com.truecred.dto.Student.StudentWithCertificatesDTO;
 import com.truecred.entity.Student;
+import com.truecred.mapper.Certificate.CertificateMapper;
 
 @Mapper(componentModel = "spring", uses = CertificateMapper.class)
 public interface StudentWithCertificateMapper {

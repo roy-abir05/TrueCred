@@ -1,9 +1,9 @@
-package com.truecred.mapper;
+package com.truecred.mapper.Certificate;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.truecred.dto.CertificateDTO;
+import com.truecred.dto.Certificate.CertificateDTO;
 import com.truecred.entity.Certificate;
 
 @Mapper(componentModel = "spting")

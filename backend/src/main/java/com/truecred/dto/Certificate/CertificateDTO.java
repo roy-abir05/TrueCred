@@ -1,4 +1,4 @@
-package com.truecred.dto;
+package com.truecred.dto.Certificate;
 
 import java.time.LocalDate;
 import java.util.UUID;

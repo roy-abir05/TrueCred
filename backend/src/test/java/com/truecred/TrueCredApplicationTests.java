@@ -1,4 +1,4 @@
-package com.truecred.api;
+package com.truecred;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
