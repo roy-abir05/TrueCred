@@ -1,27 +1,17 @@
 {"properties": [
   {
-    "name": "truecred.eth.node",
+    "name": "truecred.eth.nodeUrl",
     "type": "java.lang.String",
-    "description": "A description for 'truecred.eth.node'"
+    "description": "The URL of the Ethereum Node"
   },
   {
     "name": "truecred.contract.address",
     "type": "java.lang.String",
-    "description": "A description for 'truecred.contract.address'"
+    "description": "The Address of the Deployed Contract"
   },
   {
     "name": "truecred.wallet.private-key",
     "type": "java.lang.String",
-    "description": "A description for 'truecred.wallet.private-key'"
-  },
-  {
-    "name": "truecred.eth.nodeUrl",
-    "type": "java.lang.String",
-    "description": "A description for 'truecred.eth.nodeUrl'"
-  },
-  {
-    "name": "truecred.eth.nodeUrl",
-    "type": "java.lang.String",
-    "description": "A description for 'truecred.eth.nodeUrl'"
+    "description": "The Private Key of the Owner Address, i.e., the Deployer of the Smart Contract"
   }
 ]}
