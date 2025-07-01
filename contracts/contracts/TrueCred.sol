@@ -61,7 +61,7 @@ contract TrueCred {
 
     function splitSignature(
         bytes memory sig
-    ) public pure returns (bytes32 r, bytes32 s, uint8 v) {
+    ) private pure returns (bytes32 r, bytes32 s, uint8 v) {
         require(sig.length == 65, "invalid signature length");
 
         assembly {
@@ -74,7 +74,7 @@ contract TrueCred {
     function recoverSigner(
         bytes32 _ethSignedMessageHash,
         bytes memory _signature
-    ) public pure returns (address) {
+    ) private pure returns (address) {
         (bytes32 r, bytes32 s, uint8 v) = splitSignature(_signature);
 
         return ecrecover(_ethSignedMessageHash, v, r, s);
@@ -85,7 +85,7 @@ contract TrueCred {
         address _institution,
         string calldata _tokenURI,
         bytes calldata _signature
-    ) internal pure returns (bool) {
+    ) private pure returns (bool) {
         bytes32 messageHash = keccak256(
             abi.encodePacked("ISSUE", _student, _tokenURI)
         );
@@ -135,7 +135,7 @@ contract TrueCred {
         address _institution,
         uint256 _tokenId,
         bytes calldata _signature
-    ) internal pure returns (bool) {
+    ) private pure returns (bool) {
         bytes32 messageHash = keccak256(
             abi.encodePacked("REVOKE", _student, _tokenId)
         );
