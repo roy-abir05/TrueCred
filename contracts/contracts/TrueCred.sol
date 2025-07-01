@@ -42,11 +42,19 @@ contract TrueCred {
     }
 
     function approveInstitution(address _institution) external onlyOwner {
+        require(
+            _approvedInstitutions[_institution] == false,
+            "Institution already approved"
+        );
         _approvedInstitutions[_institution] = true;
         emit InstitutionApproved(_institution);
     }
 
     function revokeInstitution(address _institution) external onlyOwner {
+        require(
+            _approvedInstitutions[_institution] == true,
+            "Institution was not approved"
+        );
         _approvedInstitutions[_institution] = false;
         emit InstitutionRevoked(_institution);
     }
