@@ -6,7 +6,7 @@ import org.mapstruct.Mapping;
 import com.truecred.dto.Certificate.CertificateDTO;
 import com.truecred.entity.Certificate;
 
-@Mapper(componentModel = "spting")
+@Mapper(componentModel = "spring")
 public interface CertificateMapper {
     CertificateDTO toDTO(Certificate certificate);
 
