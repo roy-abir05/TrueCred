@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.truecred.dto.Student.StudentDTO;
-import com.truecred.dto.Student.StudentRegistrationDTO;
+import com.truecred.dto.student.StudentDTO;
+import com.truecred.dto.student.StudentRegistrationDTO;
 import com.truecred.entity.Student;
-import com.truecred.mapper.Student.StudentMapper;
-import com.truecred.mapper.Student.StudentRegistrationMapper;
+import com.truecred.mapper.student.StudentMapper;
+import com.truecred.mapper.student.StudentRegistrationMapper;
 import com.truecred.service.StudentService;
 
 import jakarta.validation.Valid;

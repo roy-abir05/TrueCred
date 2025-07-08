@@ -1,36 +1,37 @@
 package com.truecred.entity;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
-@ToString(exclude = "certificates")
 @Table(name = "students")
+@Data
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @NotBlank(message = "Name is required")
-    private String name;
+    @Column(nullable = false)
+    @NotBlank(message = "First Name is required")
+    private String firstName;
+
+    private String lastName;
 
     @Column(unique = true, nullable = false)
     @Email(message = "Email should be valid")
@@ -40,14 +41,35 @@ public class Student {
     @Column(nullable = false)
     private String password;
 
-    @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
+    @Column(nullable = false)
+    private String countryCode = "+91";
+
+    @Column(nullable = false)
     private String phoneNumber;
 
     private String profileImageUrl;
 
-    @NotBlank(message = "Wallet address is required")
-    private String walletAddress;
+    private boolean approved = false;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Certificate> certificates;
+    @ToString.Exclude
+    @OneToMany(mappedBy = "student")
+    private List<WalletAddress> walletAddresses;
+
+    @Column(nullable = false)
+    private Instant createdAt;
+
+    @Column(nullable = false)
+    private Instant updatedAt;
+
+    @PrePersist
+    private void onCreate() {
+        this.createdAt = Instant.now();
+        this.updatedAt = this.createdAt;
+    }
+
+    @PreUpdate
+    private void onUpdate() {
+        this.updatedAt = Instant.now();
+    }
+
 }
