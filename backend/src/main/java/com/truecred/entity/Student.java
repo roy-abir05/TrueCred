@@ -40,6 +40,7 @@ public class Student {
     private String email;
 
     @Column(nullable = false)
+    @NotBlank(message = "Student Password is required")
     private String password;
 
     @Column(nullable = false)
