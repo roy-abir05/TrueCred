@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 public class StudentRegistrationDTO {
@@ -32,6 +33,7 @@ public class StudentRegistrationDTO {
 
     private String profileImageUrl;
 
+    @ToString.Exclude
     @Valid
     private List<WalletAddressDTO> walletAddresses;
 }
