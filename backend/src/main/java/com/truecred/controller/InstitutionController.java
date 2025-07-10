@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.truecred.dto.Institution.InstitutionDTO;
-import com.truecred.dto.Institution.InstitutionRegistrationDTO;
+import com.truecred.dto.institution.InstitutionDTO;
+import com.truecred.dto.institution.InstitutionRegistrationDTO;
 import com.truecred.entity.Institution;
 import com.truecred.mapper.Institution.InstitutionMapper;
 import com.truecred.mapper.Institution.InstitutionRegistrationMapper;

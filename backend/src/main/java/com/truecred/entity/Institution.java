@@ -1,62 +1,90 @@
 package com.truecred.entity;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
-@ToString(exclude = "issuedCertificates")
 @Table(name = "institutions")
+@Data
 public class Institution {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(nullable = false)
     @NotBlank(message = "Institution name is required")
     private String name;
 
-    @Email(message = "Email must be valid")
-    @NotBlank(message = "Email is required")
     @Column(unique = true, nullable = false)
+    @Email(message = "Email should be valid")
+    @NotBlank(message = "Email is required")
     private String email;
 
     @Column(nullable = false)
+    @NotBlank(message = "Institution Password is required")
     private String password;
 
-    @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
+    @Column(nullable = false)
+    @Size(min = 2, max = 7)
+    private String countryCode = "+91";
+
+    @Column(nullable = false)
+    @Size(min = 3, max = 17)
     private String phoneNumber;
 
     private String websiteUrl;
 
     private String logoUrl;
 
-    @Size(max = 1000, message = "Address must not exceed 255 characters")
-    private String address;
+    @Column(nullable = false)
+    @NotBlank(message = "Institution Geographical Location is required")
+    @Size(max = 255, message = "Institution Geographical Location must not exceed 255 characters")
+    private String location;
 
-    @Size(max = 1000, message = "Description must not exceed 1000 characters")
-    private String description;
+    @Column(nullable = false)
+    @NotBlank(message = "Institution About is required")
+    @Size(max = 1000, message = "Institution About must not exceed 1000 characters")
+    private String about;
 
-    @NotBlank(message = "Wallet address is required")
-    private String walletAddress;
+    @Column(nullable = false)
+    private boolean approved;
 
-    @OneToMany(mappedBy = "institution", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Certificate> issuedCertificates;
+    @ToString.Exclude
+    @OneToMany(mappedBy = "institution")
+    private List<WalletAddress> walletAddresses;
+
+    @Column(nullable = false)
+    private Instant createdAt;
+
+    @Column(nullable = false)
+    private Instant updatedAt;
+
+    @PrePersist
+    private void onCreate() {
+        this.createdAt = Instant.now();
+        this.updatedAt = this.createdAt;
+        approved = false;
+    }
+
+    @PreUpdate
+    private void onUpdate() {
+        this.updatedAt = Instant.now();
+    }
 }
