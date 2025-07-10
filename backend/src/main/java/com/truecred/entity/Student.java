@@ -52,7 +52,7 @@ public class Student {
 
     private String profileImageUrl;
 
-    private boolean approved = false;
+    private boolean approved;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "student")
@@ -68,6 +68,7 @@ public class Student {
     private void onCreate() {
         this.createdAt = Instant.now();
         this.updatedAt = this.createdAt;
+        approved = false;
     }
 
     @PreUpdate
