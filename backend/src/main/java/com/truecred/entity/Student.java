@@ -15,6 +15,7 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.ToString;
 
@@ -42,9 +43,11 @@ public class Student {
     private String password;
 
     @Column(nullable = false)
+    @Size(min = 2, max = 7)
     private String countryCode = "+91";
 
     @Column(nullable = false)
+    @Size(min = 3, max = 17)
     private String phoneNumber;
 
     private String profileImageUrl;
