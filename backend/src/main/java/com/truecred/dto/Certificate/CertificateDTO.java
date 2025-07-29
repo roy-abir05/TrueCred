@@ -1,23 +1,32 @@
 package com.truecred.dto.Certificate;
 
-import java.time.LocalDate;
-import java.util.UUID;
-
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
+
+import java.time.Instant;
+import java.util.UUID;
 
 @Data
 public class CertificateDTO {
 
     private UUID id;
 
-    @NotBlank(message = "Certificate CID (IPFS hash) is required")
-    private String certificateCid;
+    private UUID studentId;
 
-    @NotBlank(message = "Certificate title is required")
-    private String certificateTitle;
+    private UUID institutionId;
 
-    @PastOrPresent(message = "Issue date cannot be in the future")
-    private LocalDate issueDate;
+    private String cid;
+
+    private String title;
+
+    private String description;
+
+    private String studentAddress;
+
+    private String institutionAddress;
+
+    private boolean revoked;
+
+    private Instant createdAt;
+
+    private Instant updatedAt;
 }
