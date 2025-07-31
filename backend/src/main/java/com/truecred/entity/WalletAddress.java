@@ -5,22 +5,17 @@ import java.util.UUID;
 
 import com.truecred.entity.enums.Owner;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "wallet_addresses")
+@Table(name = "wallet_addresses",
+        indexes = {
+                @Index(columnList = "address"),
+                @Index(columnList = "student_id"),
+                @Index(columnList = "institution_id")
+        }
+)
 @Data
 public class WalletAddress {
 
@@ -32,11 +27,11 @@ public class WalletAddress {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name = "student")
+    @JoinColumn(name = "student_id")
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "institution")
+    @JoinColumn(name = "institution_id")
     private Institution institution;
 
     @Enumerated(EnumType.STRING)

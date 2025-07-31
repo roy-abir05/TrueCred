@@ -11,7 +11,16 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table(name = "audit_logs")
+@Table(name = "audit_logs",
+        indexes = {
+                @Index(columnList = "action"),
+                @Index(columnList = "target"),
+                @Index(columnList = "actor"),
+                @Index(columnList = "actorAddress"),
+                @Index(columnList = "targetAddress"),
+                @Index(columnList = "createdAt")
+        }
+)
 @Data
 public class AuditLog {
     @Id
